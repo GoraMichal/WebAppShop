@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using WebAppShop.Models;
 
-namespace WebAppShop.ViewModels
+namespace WebAppShop.ModelsView
 {
     public class RandomMovieViewModel
     {
