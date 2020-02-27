@@ -7,13 +7,13 @@ namespace WebAppShop.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class PopulateMembershipTypes : IMigrationMetadata
+    public sealed partial class ALL : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateMembershipTypes));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ALL));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002261740013_PopulateMembershipTypes"; }
+            get { return "202002271517078_ALL"; }
         }
         
         string IMigrationMetadata.Source

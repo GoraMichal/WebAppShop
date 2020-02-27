@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebAppShop.Models;
+
 
 namespace WebAppShop.Controllers
 {
@@ -24,7 +26,9 @@ namespace WebAppShop.Controllers
         public ViewResult Index()
         {
             //var customers = GetCustomers();
-            var customers = _context.Customers.ToList();
+
+            //Metoda, która dynamicznie pobiera dane o kliencie
+         var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             return View(customers);
         }
@@ -33,7 +37,7 @@ namespace WebAppShop.Controllers
         public ActionResult Details(int id)
         {
             //var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();

@@ -221,28 +221,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002261253199_InitialModel.cs" />
-    <Compile Include="Migrations\202002261253199_InitialModel.Designer.cs">
-      <DependentUpon>202002261253199_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002261653154_AddIsSubscribedToCustomer.cs" />
-    <Compile Include="Migrations\202002261653154_AddIsSubscribedToCustomer.designer.cs">
-      <DependentUpon>202002261653154_AddIsSubscribedToCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002261702034_AddMembershipType.cs" />
-    <Compile Include="Migrations\202002261702034_AddMembershipType.designer.cs">
-      <DependentUpon>202002261702034_AddMembershipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002261740013_PopulateMembershipTypes.cs" />
-    <Compile Include="Migrations\202002261740013_PopulateMembershipTypes.designer.cs">
-      <DependentUpon>202002261740013_PopulateMembershipTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002261801122_ApplyAnnotationsToCustomerName.cs" />
-    <Compile Include="Migrations\202002261801122_ApplyAnnotationsToCustomerName.designer.cs">
-      <DependentUpon>202002261801122_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    <Compile Include="Migrations\202002271517078_ALL.cs" />
+    <Compile Include="Migrations\202002271517078_ALL.designer.cs">
+      <DependentUpon>202002271517078_ALL.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -392,6 +377,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -408,20 +394,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002261253199_InitialModel.resx">
-      <DependentUpon>202002261253199_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002261653154_AddIsSubscribedToCustomer.resx">
-      <DependentUpon>202002261653154_AddIsSubscribedToCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002261702034_AddMembershipType.resx">
-      <DependentUpon>202002261702034_AddMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002261740013_PopulateMembershipTypes.resx">
-      <DependentUpon>202002261740013_PopulateMembershipTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002261801122_ApplyAnnotationsToCustomerName.resx">
-      <DependentUpon>202002261801122_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002271517078_ALL.resx">
+      <DependentUpon>202002271517078_ALL.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -461,9 +435,11 @@
     <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.1.0.19235.1\build\net46\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.1.0.19235.1\build\net46\Microsoft.Data.SqlClient.SNI.targets'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.1.0.19235.1\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.1.0.19235.1\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

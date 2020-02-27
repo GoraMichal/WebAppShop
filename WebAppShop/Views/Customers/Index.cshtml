@@ -4,19 +4,32 @@
     ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Customer</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var customer in Model)
-        {
-        <tr>
-            <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { customer.Id }, null)</td>
-        </tr>
-        }
-    </tbody>
-</table>
 
+<h2>Customers</h2>
+@* Jezeli pojawia sie problemy z Model.Any() to zmodyfikowac Web.config *@
+@if (!Model.Any())
+{
+    <p>No customers</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Membership Type</th>
+                <th>Discount Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { customer.Id }, null)</td>
+                    <td>@customer.MembershipType.Name</td>
+                    <td>@customer.MembershipType.DiscountRate%</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

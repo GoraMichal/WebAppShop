@@ -14,6 +14,7 @@ namespace WebAppShop.Models
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Movie> Movies { get; set; }
     }
 
     //public class ApplicationUser : IdentityUser
@@ -26,8 +27,6 @@ namespace WebAppShop.Models
     //        return userIdentity;
     //    }
     //}
-
-
     //public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     //{
 
