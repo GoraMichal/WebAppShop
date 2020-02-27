@@ -10,5 +10,7 @@ namespace WebAppShop.ModelsView
     {
         public Movie Movie { get; set; }
         public List<Customer> Customers { get; set; }
+        //public IEnumerable<MembershipType> MembershipTypes { get; set; }
+        public Customer Customer { get; set; }
     }
 }

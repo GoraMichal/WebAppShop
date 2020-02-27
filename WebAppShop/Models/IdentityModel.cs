@@ -13,7 +13,7 @@ namespace WebAppShop.Models
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 
     //public class ApplicationUser : IdentityUser
