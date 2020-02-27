@@ -1,0 +1,16 @@
+﻿@model WebAppShop.Models.Movie
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły filmu <b>@Model.Name</b></h2>
+<p>Id: @Model.Id</p>
+<p>Nazwa: @Model.Name</p>
+<ul>
+    <li>Gatunek: @Model.Genre.Name</li>
+    <li>Data wydania: @Model.ReleaseDate.ToLongDateString()</li>
+    <li>Data dodanai: @Model.DateAdded.ToLongDateString()</li>
+    <li>Numer w bazie: @Model.NumberInStock</li>
+</ul>
