@@ -23,6 +23,11 @@ namespace WebAppShop.Controllers
             _context.Dispose();
         }
 
+        public ActionResult New()
+        {
+            return View();
+        }
+
         public ViewResult Index()
         {
             //var customers = GetCustomers();
