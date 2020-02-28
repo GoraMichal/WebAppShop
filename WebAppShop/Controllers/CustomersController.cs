@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebAppShop.Models;
-
+using WebAppShop.ModelsView;
 
 namespace WebAppShop.Controllers
 {
@@ -25,7 +25,13 @@ namespace WebAppShop.Controllers
 
         public ActionResult New()
         {
-            return View();
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var modelView = new NewCustomerModelView
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(modelView);
         }
 
         public ViewResult Index()

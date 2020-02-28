@@ -230,6 +230,7 @@
       <DependentUpon>202002271914124_SmallIssues.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelsView\NewCustomerModelView.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModel.cs" />
