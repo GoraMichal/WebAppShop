@@ -16,20 +16,21 @@ else
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>Customer</th>
-                <th>Membership Type</th>
-                <th>Discount Rate</th>
+                <th>Użytkownik</th>
+                <th>Rodzaj członkostwa</th>
+                <th>Zniżka</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var customer in Model)
             {
-                <tr>
-                    @* Model, Nazwa Akcji, Nazwa Kontrolera *@
-                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { customer.Id }, null)</td>
-                    <td>@customer.MembershipType.Name</td>
-                    <td>@customer.MembershipType.DiscountRate%</td>
-                </tr>
+            <tr>
+                @* Model, Nazwa Akcji, Nazwa Kontrolera *@
+                @*<td>Html.ActionLink(customer.Name, "Details", "Customers", new { customer.Id }, null)</td>*@
+                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { customer.Id }, null)</td>
+                <td>@customer.MembershipType.Name</td>
+                <td>@customer.MembershipType.DiscountRate%</td>
+            </tr>
             }
         </tbody>
     </table>

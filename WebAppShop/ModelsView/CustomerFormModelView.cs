@@ -6,7 +6,7 @@ using WebAppShop.Models;
 
 namespace WebAppShop.ModelsView
 {
-    public class NewCustomerModelView
+    public class CustomerFormModelView
     {
         //public List<MembershipType> MembershipTypes { get; set; }
         public IEnumerable<MembershipType> MembershipTypes { get; set; }

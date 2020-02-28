@@ -1,5 +1,5 @@
 ﻿@*@model WebAppShop.Models.Customer*@
-@model WebAppShop.ModelsView.NewCustomerModelView
+@model WebAppShop.ModelsView.CustomerFormModelView
 
 @{
     ViewBag.Title = "New";
@@ -18,19 +18,17 @@
     <div class="form-group">
         @*<label for="Birthday">Date of Birth</label>*@
         @Html.LabelFor(m => m.Customer.Birthday)
-        @Html.TextBoxFor(m => m.Customer.Birthday, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Customer.Birthday, "{0:d MMM yyyy}", new { @class = "form-control" })
     </div>
-
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Wybierz rodzaj członkostwa", new { @class = "form-control" })
+    </div>
     <div class="checkbox">
         <label>
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Newsletter zasubskrybowany?
         </label>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.MembershipTypeId)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Wybierz rodzaj członkostwa", new { @class = "form-control" })
-    </div>
-
     <button type="submit" class="btn btn-primary">Zapisz</button>
-} 
+}
