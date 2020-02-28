@@ -34,6 +34,16 @@ namespace WebAppShop.Controllers
             return View(modelView);
         }
 
+        //Stosuje się, żeby mieć pewność , że metoda jedynie np. wysyła
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
         public ViewResult Index()
         {
             //var customers = GetCustomers();

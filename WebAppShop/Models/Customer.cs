@@ -9,14 +9,14 @@ namespace WebAppShop.Models
     public class Customer
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Please enter customer's name.")]
+        [Required(ErrorMessage = "Wprowadź imię i nazwisko użytkownika.")]
         [StringLength(255)]
         [Display(Name = "Imię i Nazwisko")]
         public string Name { get; set; }
         public bool IsSubscribedToNewsletter { get; set; }
         public MembershipType MembershipType { get; set; }
         
-        [Display(Name = "Membership Type")]
+        [Display(Name = "Rodzaj członkostwa")]
         public byte MembershipTypeId { get; set; }
 
         [Display(Name="Data urodzin")]
