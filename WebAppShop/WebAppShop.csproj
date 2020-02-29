@@ -229,6 +229,10 @@
     <Compile Include="Migrations\202002271914124_SmallIssues.designer.cs">
       <DependentUpon>202002271914124_SmallIssues.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002290715159_UpdateModel.cs" />
+    <Compile Include="Migrations\202002290715159_UpdateModel.designer.cs">
+      <DependentUpon>202002290715159_UpdateModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsView\CustomerFormModelView.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -406,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002271914124_SmallIssues.resx">
       <DependentUpon>202002271914124_SmallIssues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002290715159_UpdateModel.resx">
+      <DependentUpon>202002290715159_UpdateModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

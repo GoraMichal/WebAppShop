@@ -38,7 +38,7 @@ namespace WebAppShop.Models
     //    {
 
     //    }
-    //    public static ApplicationDbContext Create()
+    //    public static ApplicationDbContext Save()
     //    {
     //        return new ApplicationDbContext();
     //    }

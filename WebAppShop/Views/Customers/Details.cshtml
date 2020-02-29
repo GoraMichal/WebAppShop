@@ -9,8 +9,8 @@
 <ul>
     <li>Rodzaj członkostwa: @Model.MembershipType.Name</li>
 
-    @if (Model.Birthday.HasValue)
+    @if (Model.Birthdate.HasValue)
     {
-        <li>Data narodzin: @Model.Birthday.Value.ToShortDateString()</li>
+        <li>Data narodzin: @Model.Birthdate.Value.ToShortDateString()</li>
     }
 </ul>

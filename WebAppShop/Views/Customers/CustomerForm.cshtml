@@ -8,7 +8,8 @@
 
 <h2>Nowy Użytkownik</h2>
 
-@using (Html.BeginForm("Create", "Customers"))
+@*Użycie akcji z kontrolera*@
+@using (Html.BeginForm("Save", "Customers"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
@@ -17,8 +18,8 @@
 
     <div class="form-group">
         @*<label for="Birthday">Date of Birth</label>*@
-        @Html.LabelFor(m => m.Customer.Birthday)
-        @Html.TextBoxFor(m => m.Customer.Birthday, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.LabelFor(m => m.Customer.Birthdate)
+        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
@@ -29,6 +30,7 @@
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Newsletter zasubskrybowany?
         </label>
     </div>
-
+    @Html.HiddenFor(m => m.Customer.Id);
+    //Zapis danych
     <button type="submit" class="btn btn-primary">Zapisz</button>
 }

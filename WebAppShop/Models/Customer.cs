@@ -20,6 +20,6 @@ namespace WebAppShop.Models
         public byte MembershipTypeId { get; set; }
 
         [Display(Name="Data urodzin")]
-        public DateTime? Birthday { get; set; }
+        public DateTime? Birthdate { get; set; }
     }
 }
