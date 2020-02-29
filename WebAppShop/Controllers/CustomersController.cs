@@ -23,19 +23,30 @@ namespace WebAppShop.Controllers
             _context.Dispose();
         }
 
-        public ActionResult New()
+        public ViewResult Index()
         {
-            var membershipTypes = _context.MembershipTypes.ToList();
-            var modelView = new CustomerFormModelView
-            {
-                MembershipTypes = membershipTypes
-            };
+            //var customers = GetCustomers();
 
-            return View("CustomerForm", modelView);
+            //Metoda, która dynamicznie pobiera dane jako lista 
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+
+            return View(customers);
         }
+
+        //public ActionResult New()
+        //{
+        //    var membershipTypes = _context.MembershipTypes.ToList();
+        //    var modelView = new CustomerFormModelView
+        //    {
+        //        MembershipTypes = membershipTypes
+        //    };
+
+        //    return View("CustomerForm", modelView);
+        //}
 
         //Stosuje się, żeby mieć pewność , że metoda jedynie np. wysyła
         [HttpPost]
+        //Metoda aktualizuje i tworzy nowe rekordy do bazy danych
         public ActionResult Save(Customer customer)
         {
             //_context.Customers.Add(customer);
@@ -61,12 +72,13 @@ namespace WebAppShop.Controllers
             return RedirectToAction("Index", "Customers");
         }
 
+        //Metoda zwraca widok dla uzytkownika o konkretnym id
         public ActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null) return HttpNotFound();
-             
+
             var viewModel = new CustomerFormModelView
             {
                 Customer = customer,
@@ -76,16 +88,7 @@ namespace WebAppShop.Controllers
             return View("CustomerForm", viewModel);
         }
 
-        public ViewResult Index()
-        {
-            //var customers = GetCustomers();
-
-            //Metoda, która dynamicznie pobiera dane jako lista 
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customers);
-        }
-
+        //Metoda wyswietla szczegoly o uzytkowniku, bez opcji edycji
         // GET: Customer
         public ActionResult Details(int id)
         {
