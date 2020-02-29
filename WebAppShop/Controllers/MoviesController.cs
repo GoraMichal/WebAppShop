@@ -31,6 +31,67 @@ namespace WebAppShop.Controllers
             return View(movies);
         }
 
+        public ViewResult New()
+        {
+            var genres = _context.Genres.ToList();
+
+            var modelView = new MovieFormModelView
+            {
+                Movie = new Movie() { DateAdded = DateTime.Now },
+                Genres = genres
+            };
+
+            return View("MovieForm", modelView);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                var modelView = new MovieFormModelView
+                {
+                    Movie = movie,
+                    Genres = _context.Genres.ToList()
+                };
+                return View("MovieForm", modelView);
+            }
+
+            if (movie.Id == 0)
+            {
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+            var genres = _context.Genres.ToList();
+
+            if (movie == null)
+                return HttpNotFound();
+
+            var modelView = new MovieFormModelView
+            {
+                Movie = movie,
+                Genres = genres
+            };
+
+            return View("MovieForm", modelView);
+        }
+
         public ActionResult Details(int id)
         {
             var movies = _context.Movies.Include(c => c.Genre).SingleOrDefault(c => c.Id == id);
@@ -42,23 +103,23 @@ namespace WebAppShop.Controllers
         }
 
         // GET: Movies/Random
-        public ActionResult Random()
-        {
-            var movie = new Movie() { Name = "Obcy" };
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "Customer1"},
-                new Customer { Name = "Customer2"}
-            };
+        //public ActionResult Random()
+        //{
+        //    var movie = new Movie() { Name = "Obcy" };
+        //    var customers = new List<Customer>
+        //    {
+        //        new Customer { Name = "Customer1"},
+        //        new Customer { Name = "Customer2"}
+        //    };
 
-            var viewModel = new RandomMovieViewModel
-            {
-                Movie = movie,
-                Customers = customers
-            };
+        //    var viewModel = new MovieFormModelView
+        //    {
+        //        Movie = movie,
+        //        Customers = customers
+        //    };
 
-            return View(viewModel);
-        }
+        //    return View(viewModel);
+        //}
 
         #region rozszerzenia kontrolera
         //public ActionResult Edit(int id)

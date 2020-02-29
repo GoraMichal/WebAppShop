@@ -33,20 +33,21 @@ namespace WebAppShop.Controllers
             return View(customers);
         }
 
-        //public ActionResult New()
-        //{
-        //    var membershipTypes = _context.MembershipTypes.ToList();
-        //    var modelView = new CustomerFormModelView
-        //    {
-        //        MembershipTypes = membershipTypes
-        //    };
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var modelView = new CustomerFormModelView
+            {
+                MembershipTypes = membershipTypes
+            };
 
-        //    return View("CustomerForm", modelView);
-        //}
+            return View("CustomerForm", modelView);
+        }
 
         //Stosuje się, żeby mieć pewność , że metoda jedynie np. wysyła
         [HttpPost]
-        //Metoda aktualizuje i tworzy nowe rekordy do bazy danych
+        //Metoda aktualizuje rekordy w bazie danych
+        //Jest jeszcze drugi sposob aktualizacji, czek in google
         public ActionResult Save(Customer customer)
         {
             //_context.Customers.Add(customer);
@@ -68,6 +69,7 @@ namespace WebAppShop.Controllers
             }
 
             _context.SaveChanges();
+            //_context.Set(); //co to robi? sprawdzic te metody
 
             return RedirectToAction("Index", "Customers");
         }
@@ -77,15 +79,16 @@ namespace WebAppShop.Controllers
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
-            if (customer == null) return HttpNotFound();
+            if (customer == null) 
+                return HttpNotFound();
 
-            var viewModel = new CustomerFormModelView
+            var modelView = new CustomerFormModelView
             {
                 Customer = customer,
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
 
-            return View("CustomerForm", viewModel);
+            return View("CustomerForm", modelView);
         }
 
         //Metoda wyswietla szczegoly o uzytkowniku, bez opcji edycji
@@ -100,6 +103,15 @@ namespace WebAppShop.Controllers
 
             return View(customer);
         }
+
+
+        //[HttpPost]
+        //public ActionResult Create(Customer customer)
+        //{
+        //    _context.Customers.Add(customer);
+        //    _context.SaveChanges();
+        //    return RedirectToAction("Index", "Customers");
+        //}
 
         //private IEnumerable<Customer> GetCustomers()
         //{

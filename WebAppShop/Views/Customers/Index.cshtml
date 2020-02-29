@@ -6,6 +6,9 @@
 }
 
 <h2>Customers</h2>
+<p>
+    @Html.ActionLink("Nowy użytkownik", "New", "Customers", null, new { @class = "btn btn-primary" })
+</p>
 @* Jezeli pojawia sie problemy z Model.Any() to zmodyfikowac Web.config *@
 @if (!Model.Any())
 {
