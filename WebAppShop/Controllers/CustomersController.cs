@@ -36,6 +36,7 @@ namespace WebAppShop.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
+
             var modelView = new CustomerFormModelView
             {
                 MembershipTypes = membershipTypes
@@ -56,10 +57,12 @@ namespace WebAppShop.Controllers
                 _context.Customers.Add(customer);
             else
             {
+                //Single() - zwraca jeden konkretny element
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
                 //Słaby sposob na aktualizacje
                 //TryUpdateModel(customerInDb, " ", new string[] { "Name", "Email"});
 
+                //Z użyciem biblioteki
                 //Mapper.Map(customer, customerInDb); 
 
                 customerInDb.Name = customer.Name;
@@ -96,6 +99,7 @@ namespace WebAppShop.Controllers
         public ActionResult Details(int id)
         {
             //var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+            //SingleOrDefaul() - zwraca jeden konkretny element lub wartosc domyslna
             var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
@@ -104,6 +108,16 @@ namespace WebAppShop.Controllers
             return View(customer);
         }
 
+
+        public ActionResult Remove(int id)
+        {
+            var removeObject = _context.Customers.Single(m => m.Id == id);
+
+            _context.Customers.Remove(removeObject);
+            
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customers");
+        }
 
         //[HttpPost]
         //public ActionResult Create(Customer customer)

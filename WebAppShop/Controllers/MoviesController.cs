@@ -47,15 +47,16 @@ namespace WebAppShop.Controllers
         [HttpPost]
         public ActionResult Save(Movie movie)
         {
-            if (!ModelState.IsValid)
-            {
-                var modelView = new MovieFormModelView
-                {
-                    Movie = movie,
-                    Genres = _context.Genres.ToList()
-                };
-                return View("MovieForm", modelView);
-            }
+            //sprawdza poprawność powiązania wartości przychodzących z żądaniami do modelu 
+            //if (!ModelState.IsValid) 
+            //{
+            //    var modelView = new MovieFormModelView
+            //    {
+            //        Movie = movie,
+            //        Genres = _context.Genres.ToList()
+            //    };
+            //    return View("MovieForm", modelView);
+            //}
 
             if (movie.Id == 0)
             {
@@ -102,6 +103,9 @@ namespace WebAppShop.Controllers
             return View(movies);
         }
 
+        //Zrobic usuwanie
+
+        #region rozszerzenia kontrolera
         // GET: Movies/Random
         //public ActionResult Random()
         //{
@@ -121,7 +125,6 @@ namespace WebAppShop.Controllers
         //    return View(viewModel);
         //}
 
-        #region rozszerzenia kontrolera
         //public ActionResult Edit(int id)
         //{
         //    return Content("id= " + id);

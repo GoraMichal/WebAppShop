@@ -22,6 +22,7 @@ else
                 <th>Użytkownik</th>
                 <th>Rodzaj członkostwa</th>
                 <th>Zniżka</th>
+                <th>Edycja</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@ else
                 <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { customer.Id }, null)</td>
                 <td>@customer.MembershipType.Name</td>
                 <td>@customer.MembershipType.DiscountRate%</td>
+                <td>@Html.ActionLink("Usuń", "Remove", "Customers", new { id = customer.Id }, new { @class = "btn btn-primary" })</td>
             </tr>
             }
         </tbody>
