@@ -35,9 +35,9 @@ namespace WebAppShop.Controllers
         {
             var genres = _context.Genres.ToList();
 
-            var modelView = new MovieFormModelView
+            var modelView = new MovieFormModelView 
             {
-                Movie = new Movie() { DateAdded = DateTime.Now },
+                DateAdded = DateTime.Now,
                 Genres = genres
             };
 
@@ -48,15 +48,14 @@ namespace WebAppShop.Controllers
         public ActionResult Save(Movie movie)
         {
             //sprawdza poprawność powiązania wartości przychodzących z żądaniami do modelu 
-            //if (!ModelState.IsValid) 
-            //{
-            //    var modelView = new MovieFormModelView
-            //    {
-            //        Movie = movie,
-            //        Genres = _context.Genres.ToList()
-            //    };
-            //    return View("MovieForm", modelView);
-            //}
+            if (!ModelState.IsValid)
+            {
+                var modelView = new MovieFormModelView(movie)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+                return View("MovieForm", modelView);
+            }
 
             if (movie.Id == 0)
             {
@@ -85,13 +84,22 @@ namespace WebAppShop.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var modelView = new MovieFormModelView
+            var modelView = new MovieFormModelView(movie)
             {
-                Movie = movie,
-                Genres = genres
+                Genres = _context.Genres.ToList()
             };
 
             return View("MovieForm", modelView);
+        }
+
+        public ActionResult Remove(int id)
+        {
+            var removeObject = _context.Movies.Single(m => m.Id == id);
+
+            _context.Movies.Remove(removeObject);
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Movies");
         }
 
         public ActionResult Details(int id)

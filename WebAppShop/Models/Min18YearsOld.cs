@@ -12,7 +12,8 @@ namespace WebAppShop.Models
         {
             var customer = (Customer)validationContext.ObjectInstance;
 
-            if (customer.MembershipTypeId == 0 || customer.MembershipTypeId == 1)
+            if (customer.MembershipTypeId == MembershipType.Unknow 
+                || customer.MembershipTypeId == MembershipType.Basic)
                 return ValidationResult.Success;
 
             if (customer.Birthdate == null)
@@ -20,7 +21,9 @@ namespace WebAppShop.Models
 
             var age = DateTime.Today.Year - customer.Birthdate.Value.Year;
 
-            return (age >= 18) ? ValidationResult.Success : new ValidationResult("Użytkownik powinien mieć więcej niż 18 lat.");
+            return (age >= 18) 
+                ? ValidationResult.Success 
+                : new ValidationResult("Użytkownik powinien mieć więcej niż 18 lat.");
         }
     }
 }

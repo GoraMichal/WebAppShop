@@ -13,19 +13,21 @@
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>Movie</th>
-            <th>Release Year</th>
-            <th>Genre</th>
+            <th>Nazwa Filmu</th>
+            <th>Data wydania</th>
+            <th>Gatunek filmu</th>
+            <th>Edytuj</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var movie in Model)
         {
-            <tr>
-                <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
-                <td>@movie.ReleaseDate.Year</td>
-                <td>@movie.Genre.Name</td>
-            </tr>
+        <tr>
+            <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
+            <td>@movie.ReleaseDate.Year</td>
+            <td>@movie.Genre.Name</td>
+            <td>@Html.ActionLink("Usuń", "Remove", "Movies", new { id = movie.Id }, new { @class = "btn btn-primary" })</td>
+        </tr>
         }
 
     </tbody>
