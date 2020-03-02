@@ -39,19 +39,28 @@ namespace WebAppShop.Controllers
 
             var modelView = new CustomerFormModelView
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
 
             return View("CustomerForm", modelView);
         }
 
-        //Stosuje się, żeby mieć pewność , że metoda jedynie np. wysyła
         [HttpPost]
         //Metoda aktualizuje rekordy w bazie danych
-        //Jest jeszcze drugi sposob aktualizacji, czek in google
         public ActionResult Save(Customer customer)
         {
-            //_context.Customers.Add(customer);
+            //walidacja
+            if (!ModelState.IsValid)
+            {
+                var modelView = new CustomerFormModelView
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", modelView);
+            }
+
 
             if (customer.Id == 0)
                 _context.Customers.Add(customer);
@@ -59,6 +68,7 @@ namespace WebAppShop.Controllers
             {
                 //Single() - zwraca jeden konkretny element
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                
                 //Słaby sposob na aktualizacje
                 //TryUpdateModel(customerInDb, " ", new string[] { "Name", "Email"});
 

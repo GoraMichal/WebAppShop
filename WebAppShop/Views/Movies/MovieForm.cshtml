@@ -8,8 +8,6 @@
         var className = Model.Customers.Count > 1 ? "popular" : null;
     }*@
 
-<h2>@Model.Title</h2>
-
 @using (Html.BeginForm("Save", "Movies"))
 {
     @Html.ValidationSummary()

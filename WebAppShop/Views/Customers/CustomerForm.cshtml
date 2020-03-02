@@ -1,5 +1,4 @@
-﻿@*@model WebAppShop.Models.Customer*@
-@model WebAppShop.ModelsView.CustomerFormModelView
+﻿@model WebAppShop.ModelsView.CustomerFormModelView
 
 @{
     ViewBag.Title = "New";
@@ -11,19 +10,23 @@
 @*Użycie akcji z kontrolera*@
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @Html.ValidationSummary()
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
 
     <div class="form-group">
         @*<label for="Birthday">Date of Birth</label>*@
         @Html.LabelFor(m => m.Customer.Birthdate)
         @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthdate)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Wybierz rodzaj członkostwa", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
     <div class="checkbox">
         <label>
@@ -32,8 +35,6 @@
     </div>
     @Html.HiddenFor(m => m.Customer.Id);
     //Zapis danych
-
-
     <button type="submit" class="btn btn-primary">Zapisz</button>
 }
 

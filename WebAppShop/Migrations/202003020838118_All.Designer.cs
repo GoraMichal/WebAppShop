@@ -7,13 +7,13 @@ namespace WebAppShop.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class ALL : IMigrationMetadata
+    public sealed partial class All : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ALL));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(All));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002271517078_ALL"; }
+            get { return "202003020838118_All"; }
         }
         
         string IMigrationMetadata.Source

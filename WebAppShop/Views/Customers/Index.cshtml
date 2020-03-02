@@ -30,7 +30,6 @@ else
             {
             <tr>
                 @* Model, Nazwa Akcji, Nazwa Kontrolera *@
-                @*<td>Html.ActionLink(customer.Name, "Details", "Customers", new { customer.Id }, null)</td>*@
                 <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { customer.Id }, null)</td>
                 <td>@customer.MembershipType.Name</td>
                 <td>@customer.MembershipType.DiscountRate%</td>

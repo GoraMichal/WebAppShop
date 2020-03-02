@@ -221,10 +221,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002271517078_ALL.cs" />
-    <Compile Include="Migrations\202002271517078_ALL.designer.cs">
-      <DependentUpon>202002271517078_ALL.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202002271914124_SmallIssues.cs" />
     <Compile Include="Migrations\202002271914124_SmallIssues.designer.cs">
       <DependentUpon>202002271914124_SmallIssues.cs</DependentUpon>
@@ -233,12 +229,21 @@
     <Compile Include="Migrations\202002290715159_UpdateModel.designer.cs">
       <DependentUpon>202002290715159_UpdateModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003020735550_Update.cs" />
+    <Compile Include="Migrations\202003020735550_Update.designer.cs">
+      <DependentUpon>202003020735550_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003020838118_All.cs" />
+    <Compile Include="Migrations\202003020838118_All.designer.cs">
+      <DependentUpon>202003020838118_All.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsView\CustomerFormModelView.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModel.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\Min18YearsOld.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelsView\MovieFormModelView.cs" />
@@ -405,14 +410,17 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002271517078_ALL.resx">
-      <DependentUpon>202002271517078_ALL.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002271914124_SmallIssues.resx">
       <DependentUpon>202002271914124_SmallIssues.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002290715159_UpdateModel.resx">
       <DependentUpon>202002290715159_UpdateModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003020735550_Update.resx">
+      <DependentUpon>202003020735550_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003020838118_All.resx">
+      <DependentUpon>202003020838118_All.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
