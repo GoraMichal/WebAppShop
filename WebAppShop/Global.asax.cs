@@ -16,6 +16,7 @@ namespace WebAppShop
     {
         protected void Application_Start()
         {
+
             new MappingProfile();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();

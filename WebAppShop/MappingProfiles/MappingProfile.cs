@@ -11,6 +11,7 @@ namespace WebAppShop.MappingProfiles
 
     public class MappingProfile : Profile
     {
+
         public MappingProfile()
         {
             // Mapping domain entities to view entities

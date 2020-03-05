@@ -19,6 +19,15 @@ namespace WebAppShop.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
+        //[HttpGet]
+        //public IEnumerable<CustomerDto> GetCustomers()
+        //{
+        //    //return model
+        //    var models = _context.Customers.ToList();
+        //    //Create mapper configuration
+        //    //Map the objects
+        //    return _mapper.Map<List<Customer>, List<CustomerDto>>(models);
+        //}
 
         // GET api/customers
         [HttpGet]
