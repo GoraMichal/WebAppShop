@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebAppShop.Dtos;
 using WebAppShop.Models;
 
 namespace WebAppShop.Controllers.Api
@@ -20,9 +22,16 @@ namespace WebAppShop.Controllers.Api
 
         // GET api/customers
         [HttpGet]
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _context.Customers.ToList();
+            //return model
+            var models = _context.Customers.ToList();
+            //Create mapper configuration
+            var config = new MapperConfiguration(mc => mc.CreateMap<Customer, CustomerDto>());
+            //Map the objects
+            var mapper = new Mapper(config);
+            var modelResource = mapper.Map<List<Customer>, List<CustomerDto>>(models);
+            return modelResource;
         }
 
         //GET api/customers/1
