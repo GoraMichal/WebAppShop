@@ -28,16 +28,16 @@ else
         <tbody>
             @foreach (var customer in Model)
             {
-            <tr>
-                @* Model, Nazwa Akcji, Nazwa Kontrolera *@
-                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { customer.Id }, null)</td>
-                <td>@customer.MembershipType.Name</td>
-                <td>@customer.MembershipType.DiscountRate%</td>
-                <td>
-                    <button data-customer-id="@customer.Id" class="btn-link js-delete">Usuń</button>
-                </td>
-                @*<td>@Html.ActionLink("Usuń", "Remove", "Customers", new { id = customer.Id }, new { @class = "btn btn-primary" })</td>*@
-            </tr>
+                <tr>
+                    @* Model, Nazwa Akcji, Nazwa Kontrolera *@
+                    <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { customer.Id }, null)</td>
+                    <td>@customer.MembershipType.Name</td>
+                    <td>@customer.MembershipType.DiscountRate%</td>
+                    <td>
+                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Usuń</button>
+                    </td>
+                    @*<td>@Html.ActionLink("Usuń", "Remove", "Customers", new { id = customer.Id }, new { @class = "btn btn-primary" })</td>*@
+                </tr>
             }
         </tbody>
     </table>
@@ -50,16 +50,20 @@ else
             $("#customers .js-delete").on("click", function () {
                 var button = $(this);
 
-                if (confirm("Czy na pewno chcesz usunąć tego użytkownika?")) {
-                    $.ajax({
-                        url: "/api/customers/" + button.attr("data-customer-id"),
-                        method: "DELETE",
-                        success: function () {
-                            button.parents("tr").remove();
-                            //console.log("Sukces");
-                        }
-                    });
-                }
+                bootbox.confirm("Czy na pewno chcesz usunąć tego użykownika?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/customers/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                button.parents("tr").remove();
+                                //console.log("Sukces");
+                            }
+                        });
+                    }
+                });
+                //if (confirm("Czy na pewno chcesz usunąć tego użytkownika?")) {
+                //}
             });
         });
     </script>
