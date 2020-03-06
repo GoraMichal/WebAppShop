@@ -4,7 +4,7 @@
     ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+ 
 <h2>Customers</h2>
 <p>
     @Html.ActionLink("Nowy użytkownik", "New", "Customers", null, new { @class = "btn btn-primary" })
@@ -34,7 +34,7 @@ else
                     <td>@customer.MembershipType.Name</td>
                     <td>@customer.MembershipType.DiscountRate%</td>
                     <td>
-                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Usuń</button>
+                        <button data-customer-id="@customer.Id" type="button" class="btn btn-link js-delete">Usuń</button>
                     </td>
                     @*<td>@Html.ActionLink("Usuń", "Remove", "Customers", new { id = customer.Id }, new { @class = "btn btn-primary" })</td>*@
                 </tr>
@@ -47,7 +47,11 @@ else
 {
     <script>
         $(document).ready(function () {
-            $("#customers .js-delete").on("click", function () {
+            $("#customers").DataTable();
+            
+            //customers - selektor, js-delete - filtr
+            $("#customers").on("click", ".js-delete", function () {
+            //$("#customers .js-delete").on("click", function () {
                 var button = $(this);
 
                 bootbox.confirm("Czy na pewno chcesz usunąć tego użykownika?", function (result) {
