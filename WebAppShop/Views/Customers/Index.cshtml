@@ -47,7 +47,7 @@ else
 {
     <script>
         $(document).ready(function () {
-            $("#customers").DataTable();
+            var table = $("#customers").DataTable();
             
             //customers - selektor, js-delete - filtr
             $("#customers").on("click", ".js-delete", function () {
@@ -60,7 +60,7 @@ else
                             url: "/api/customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
-                                button.parents("tr").remove();
+                                table.row(button.parents("tr")).remove().draw();
                                 //console.log("Sukces");
                             }
                         });

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -34,7 +35,7 @@ namespace WebAppShop.Controllers.Api
         public IEnumerable<CustomerDto> GetCustomers()
         {
             //return model
-            var models = _context.Customers.ToList();
+            var models = _context.Customers.Include(c => c.MembershipType).ToList();
             //Create mapper configuration
             var config = new MapperConfiguration(mc => mc.CreateMap<Customer, CustomerDto>());
             //Map the objects

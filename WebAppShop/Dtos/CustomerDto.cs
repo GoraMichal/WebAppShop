@@ -17,11 +17,11 @@ namespace WebAppShop.Dtos
         
         public bool IsSubscribedToNewsletter { get; set; }
 
-        public MembershipType MembershipType { get; set; }
-
         public byte MembershipTypeId { get; set; }
 
-        [Min18YearsOld]
+        public MembershipType MembershipType { get; set; }
+
+        //[Min18YearsOld]
         public DateTime? Birthdate { get; set; }
     }
 }

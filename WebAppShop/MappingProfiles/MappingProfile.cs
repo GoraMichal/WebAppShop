@@ -14,10 +14,14 @@ namespace WebAppShop.MappingProfiles
 
         public MappingProfile()
         {
+            //Domain to Dto
             // Mapping domain entities to view entities
             CreateMap<Customer, CustomerDto>();
             // Mapping view entities to domain entities
             CreateMap<CustomerDto, Customer>();
+
+            //Dto to Domain
+            CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore());
         }
     }
 }
