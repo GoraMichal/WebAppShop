@@ -27,16 +27,20 @@ namespace WebAppShop.Controllers
 
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
+            //var movies = _context.Movies.Include(m => m.Genre).ToList();
+            //return View(movies);
+            if (User.IsInRole("CanManageMovies"))
+                return View("List");
+            else
+                return View("ReadOnlyList");
 
-            return View(movies);
         }
 
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();
 
-            var modelView = new MovieFormModelView 
+            var modelView = new MovieFormModelView
             {
                 DateAdded = DateTime.Now,
                 Genres = genres
