@@ -20,8 +20,11 @@ namespace WebAppShop.MappingProfiles
             // Mapping view entities to domain entities
             CreateMap<CustomerDto, Customer>();
 
+            CreateMap<Movie, MovieDto>();
+
             //Dto to Domain
             CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore());
+            CreateMap<MovieDto, Movie>().ForMember(c => c.Id, opt => opt.Ignore());
         }
     }
 }

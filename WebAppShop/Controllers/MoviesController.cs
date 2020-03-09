@@ -29,10 +29,13 @@ namespace WebAppShop.Controllers
         {
             //var movies = _context.Movies.Include(m => m.Genre).ToList();
             //return View(movies);
-            if (User.IsInRole("CanManageMovies"))
-                return View("List");
-            else
-                return View("ReadOnlyList");
+
+            return View("Index");
+
+            //if (User.IsInRole("CanManageMovies"))
+            //    return View("List");
+            //else
+            //    return View("ReadOnlyList");
 
         }
 
