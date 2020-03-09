@@ -7,13 +7,13 @@ namespace WebAppShop.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class UpdateModel : IMigrationMetadata
+    public sealed partial class Authentication : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Authentication));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002290715159_UpdateModel"; }
+            get { return "202003091231543_Authentication"; }
         }
         
         string IMigrationMetadata.Source
