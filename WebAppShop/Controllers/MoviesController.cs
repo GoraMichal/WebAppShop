@@ -9,6 +9,7 @@ using WebAppShop.ModelsView;
 
 namespace WebAppShop.Controllers
 {
+    //[AllowAnonymous]
     public class MoviesController : Controller
     {
         //Kontekst pomocniczy
