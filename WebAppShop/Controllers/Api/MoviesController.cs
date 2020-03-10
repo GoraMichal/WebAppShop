@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using WebAppShop.Dtos;
 using WebAppShop.Models;
@@ -19,10 +18,22 @@ namespace WebAppShop.Controllers.Api
             _context = new ApplicationDbContext();
         }
         // GET /api/movies
+        //[HttpGet]
+        //public IEnumerable<Movie> GetMovies()
+        //{
+        //    return _context.Movies.Include(g => g.Genre).ToList();
+        //}
+
         [HttpGet]
-        public IEnumerable<Movie> GetMovies()
+        public IEnumerable<MovieDto> GetMovies(string query = null)
         {
-            return _context.Movies.Include(g => g.Genre.Name).ToList();
+            var models = _context.Movies.Include(c => c.Genre).ToList();
+            //Create mapper configuration
+            var config = new MapperConfiguration(mc => mc.CreateMap<Movie, MovieDto>());
+            //Map the objects
+            var mapper = new Mapper(config);
+            var modelResource = mapper.Map<List<Movie>, List<MovieDto>>(models);
+            return modelResource;
         }
 
         //GET api/movies/1

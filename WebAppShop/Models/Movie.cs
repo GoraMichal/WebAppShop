@@ -26,6 +26,8 @@ namespace WebAppShop.Models
         [Required(ErrorMessage = "Wybierz liczbę ze zbioru od 1 do 20.")]
         public byte? NumberInStock { get; set; }
 
+        public byte NumberAvailable { get; set; }
+
         public Genre Genre { get; set; }
 
         [Display(Name = "Gatunek")]

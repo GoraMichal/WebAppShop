@@ -30,7 +30,8 @@ namespace WebAppShop.Controllers
             //var movies = _context.Movies.Include(m => m.Genre).ToList();
             //return View(movies);
 
-            return View("Index");
+            //Sam return działa po dodaniu mappingprofile w api i zmiany widoku na JS
+            return View();
 
             //if (User.IsInRole("CanManageMovies"))
             //    return View("List");

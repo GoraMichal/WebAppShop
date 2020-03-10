@@ -21,6 +21,8 @@ namespace WebAppShop.Dtos
 
         public byte? NumberInStock { get; set; }
 
+        public byte NumberAvailable { get; set; }
+
         public Genre Genre { get; set; }
         
         public byte GenreId { get; set; }
