@@ -4,7 +4,7 @@
     ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
- 
+
 <h2>Customers</h2>
 <p>
     @Html.ActionLink("Nowy użytkownik", "New", "Customers", null, new { @class = "btn btn-primary" })
@@ -48,12 +48,12 @@ else
     <script>
         $(document).ready(function () {
             var table = $("#customers").DataTable();
-            
+
             //customers - selektor, js-delete - filtr
             $("#customers").on("click", ".js-delete", function () {
-            //$("#customers .js-delete").on("click", function () {
+                //$("#customers .js-delete").on("click", function () {
                 var button = $(this);
-
+                
                 bootbox.confirm("Czy na pewno chcesz usunąć tego użykownika?", function (result) {
                     if (result) {
                         $.ajax({

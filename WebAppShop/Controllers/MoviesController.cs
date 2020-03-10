@@ -31,15 +31,16 @@ namespace WebAppShop.Controllers
             //return View(movies);
 
             //Sam return działa po dodaniu mappingprofile w api i zmiany widoku na JS
-            return View();
+            //return View();
 
-            //if (User.IsInRole("CanManageMovies"))
-            //    return View("List");
-            //else
-            //    return View("ReadOnlyList");
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+            else
+                return View("ReadOnlyList");
 
         }
-
+        //[Authorize(Roles = "CanManageMovies")]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();
