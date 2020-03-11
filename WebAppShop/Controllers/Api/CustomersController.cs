@@ -20,27 +20,39 @@ namespace WebAppShop.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
+        // GET api/customers
         //[HttpGet]
-        //public IEnumerable<CustomerDto> GetCustomers()
+        //public IEnumerable<CustomerDto> GetCustomers(string query = null)
         //{
         //    //return model
-        //    var models = _context.Customers.ToList();
+        //    var models = _context.Customers.Include(c => c.MembershipType).ToList();
         //    //Create mapper configuration
+        //    var config = new MapperConfiguration(mc => mc.CreateMap<Customer, CustomerDto>());
         //    //Map the objects
-        //    return _mapper.Map<List<Customer>, List<CustomerDto>>(models);
+        //    var mapper = new Mapper(config);
+        //    var modelResource = mapper.Map<List<Customer>, List<CustomerDto>>(models);
+        //    return modelResource;
         //}
 
         // GET api/customers
         [HttpGet]
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers(string query = null)
         {
             //return model
-            var models = _context.Customers.Include(c => c.MembershipType).ToList();
+            var customersQuery = _context.Customers.Include(c => c.MembershipType);
+            
+            //Ze wszystkich rekordow wyszukuje najblizsze wyszukiwanej frazie      
+            if (!String.IsNullOrWhiteSpace(query))
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+
+            var customerDtos = customersQuery.ToList();
+            
             //Create mapper configuration
             var config = new MapperConfiguration(mc => mc.CreateMap<Customer, CustomerDto>());
+           
             //Map the objects
             var mapper = new Mapper(config);
-            var modelResource = mapper.Map<List<Customer>, List<CustomerDto>>(models);
+            var modelResource = mapper.Map<List<Customer>, List<CustomerDto>>(customerDtos);
             return modelResource;
         }
 
