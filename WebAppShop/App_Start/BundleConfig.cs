@@ -13,8 +13,8 @@ namespace WebAppShop
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/DataTables/jquery.dataTables.js"
-                        //"~/Scripts/DataTables/dataTables.bootstrap.js"
+                        "~/Scripts/DataTables/jquery.dataTables.js",
+                        "~/Scripts/typeahead.bundle.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -29,7 +29,8 @@ namespace WebAppShop
                       "~/Content/DataTables/css/jquery.dataTables.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/typehead.css"));
         }
     }
 }
