@@ -65,7 +65,7 @@ namespace WebAppShop
 
             app.UseFacebookAuthentication(
                appId: "2289990447969242",
-               appSecret: "");
+               appSecret: "111");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
