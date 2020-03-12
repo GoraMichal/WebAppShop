@@ -34,6 +34,7 @@ namespace WebAppShop.Models
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public static ApplicationDbContext Create()

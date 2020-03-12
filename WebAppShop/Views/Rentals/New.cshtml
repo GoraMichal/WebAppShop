@@ -8,7 +8,7 @@
 @*@Html.BeginForm("","")*@
 @*@Ajax.BeginForm()*@
 
-<form>
+<form id="newRental">
     @*div.form-group>label+input[type='text'].form-control*@
     <div class="form-group">
         <label>Customer</label>
@@ -35,14 +35,13 @@
 </form>
 
 @section scripts
-    {
+{
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-
             var vm = {
                 movieIds: []
             };
-
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -51,8 +50,7 @@
                     wildcard: '%QUERY'
                 }
             });
-
-            //typeahaded, podpowiedzi dla pol tekstowych
+            //podpowiedzi dla pol tekstowych
             $('#customer').typeahead({
                 minLength: 3,
                 highlight: true
@@ -60,10 +58,9 @@
                 name: 'customers',
                 display: 'name',
                 source: customers
-            }).on("typehead:select", function (e, customer) {
+            }).on("typeahead:select", function (e, customer) {
                 vm.customerId = customer.id;
             });
-
             var movies = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -71,8 +68,7 @@
                     url: '/api/movies?query=%QUERY',
                     wildcard: '%QUERY'
                 }
-            })
-
+            });
             $('#movie').typeahead({
                 minLength: 3,
                 highlight: true
@@ -81,15 +77,37 @@
                 display: 'name',
                 source: movies
             }).on("typeahead:select", function (e, movie) {
-
-                //Dynamiczne tworzenie listy
                 $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
-                //Czyszczenie textbox po selekcji
                 $("#movie").typeahead("val", "");
-
                 vm.movieIds.push(movie.id);
             });
-
+            $.validator.addMethod("validCustomer", function () {
+                return vm.customerId && vm.customerId !== 0;
+            }, "Please select a valid customer.");
+            $.validator.addMethod("atLeastOneMovie", function () {
+                return vm.movieIds.length > 0;
+            }, "Please select at least one movie.");
+            var validator = $("#newRental").validate({
+                submitHandler: function () {
+                    $.ajax({
+                        url: "/api/newRentals",
+                        method: "post",
+                        data: vm
+                    })
+                        .done(function () {
+                            toastr.success("Rentals successfully recorded.");
+                            $("#customer").typeahead("val", "");
+                            $("#movie").typeahead("val", "");
+                            $("#movies").empty();
+                            vm = { movieIds: [] };
+                            validator.resetForm();
+                        })
+                        .fail(function () {
+                            toastr.error("Something unexpected happened.");
+                        });
+                    return false;
+                }
+            });
         });
     </script>
 }
