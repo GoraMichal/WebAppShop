@@ -80,10 +80,7 @@ namespace WebAppShop.Controllers
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsletter = customerInDb.IsSubscribedToNewsletter;
             }
-
             _context.SaveChanges();
-            //_context.Set(); //co to robi? sprawdzic te metody
-
             return RedirectToAction("Index", "Customers");
         }
 
